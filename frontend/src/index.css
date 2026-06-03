@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
+    --radius: 0.5rem;
+  }
+
+  * { @apply border-border; }
+  body {
+    @apply bg-background text-foreground;
+    font-family: system-ui, 'Segoe UI', 'Microsoft JhengHei', sans-serif;
+    font-size: 15px;   /* 全域字體從預設 14px 調大至 15px */
+    line-height: 1.6;
+  }
+  #root { width: 100%; min-height: 100vh; }
+}
+
+/* ─── Frappe Gantt 狀態顏色 ─── */
+.gantt .bar-wrapper.bar-completed  .bar { fill: #10B981 !important; }
+.gantt .bar-wrapper.bar-in-progress .bar { fill: #3B82F6 !important; }
+.gantt .bar-wrapper.bar-delayed    .bar { fill: #F97316 !important; }
+.gantt .bar-wrapper.bar-not-started .bar { fill: #9CA3AF !important; }
+
+/* ─── Gantt 行間距、分隔線、斑馬紋 ─── */
+.gantt-container { overflow-x: auto; }
+
+/* 格線顏色加深 */
+.gantt .grid-header { fill: #F3F4F6 !important; }
+.gantt .grid-row { stroke: #E5E7EB !important; }
+.gantt .grid-row:nth-child(even) { fill: #F9FAFB !important; }
+
+/* 任務列高度加大，行間留白 */
+.gantt .bar-wrapper { cursor: pointer; }
+.gantt .bar-group   { transform: translateY(2px); }
+
+/* 加深 today 線 */
+.gantt .today-highlight { fill: rgba(99, 102, 241, 0.08) !important; }
+
+/* Popup 白底樣式覆蓋 */
+.gantt .popup-wrapper .pointer { border-top-color: white !important; }
+.gantt .popup-wrapper {
+  background: white !important;
+  border: 1px solid #E5E7EB !important;
+  border-radius: 10px !important;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12) !important;
+  padding: 0 !important;
+  min-width: 240px !important;
+}

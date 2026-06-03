@@ -1,0 +1,45 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Snapshot {
+  id         Int      @id @default(autoincrement())
+  filename   String
+  label      String
+  filePath   String
+  rowCount   Int      @default(0)
+  importedAt DateTime @default(now())
+  tasks      Task[]
+
+  @@map("snapshots")
+}
+
+model Task {
+  id                 Int       @id @default(autoincrement())
+  snapshotId         Int
+  snapshot           Snapshot  @relation(fields: [snapshotId], references: [id], onDelete: Cascade)
+
+  checkpointName     String
+  projectName        String
+  isFormalCheckpoint Boolean   @default(false)
+  phase              String?
+  plannedDate        DateTime?
+  status             String    @default("")
+  assignees          String[]  @default([])
+  actualDate         DateTime?
+  remarks            String?
+  isOverdue          Boolean   @default(false)
+  createdAt          DateTime  @default(now())
+
+  @@index([snapshotId])
+  @@index([projectName])
+  @@index([status])
+  @@index([plannedDate])
+  @@index([isOverdue])
+  @@map("tasks")
+}
