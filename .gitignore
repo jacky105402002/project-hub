@@ -1,6 +1,6 @@
-# 本機開發資料（不上傳）
-data/
-uploads/
+# 本機開發資料（不上傳）— 錨定到根目錄，避免誤殺 src/uploads 原始碼
+/data/
+/uploads/
 
 # 舊原型
 node_modules/
