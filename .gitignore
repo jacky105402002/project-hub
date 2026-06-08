@@ -12,3 +12,7 @@ server.js
 package.json
 package-lock.json
 .claude/
+
+# 保留子目錄的 lockfile（讓 Docker build 可以用 npm ci）
+!backend/package-lock.json
+!frontend/package-lock.json
