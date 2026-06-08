@@ -3,13 +3,14 @@ FROM node:22-alpine AS builder
 WORKDIR /app
 
 COPY package*.json ./
-RUN npm install --legacy-peer-deps --no-audit --no-fund
+RUN npm install --legacy-peer-deps --no-audit --no-fund && \
+    ls node_modules/.bin/nest || (echo "ERROR: nest CLI not found!" && exit 1)
 
 COPY prisma ./prisma
 RUN npx prisma generate
 
 COPY . .
-RUN npm run build
+RUN node_modules/.bin/nest build
 
 # ── Stage 2: Production ─────────────────────────────────
 FROM node:22-alpine AS runner
