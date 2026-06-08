@@ -1,8 +1,8 @@
 #!/bin/sh
 set -e
 
-echo "Running Prisma migrations..."
-npx prisma migrate deploy
+echo "Syncing Prisma schema (db push)..."
+npx prisma db push --skip-generate
 
 echo "Starting NestJS server..."
 exec node dist/main.js
